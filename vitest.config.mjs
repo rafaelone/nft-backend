@@ -6,6 +6,16 @@ export default defineConfig({
   test: {
     globals: true,
     root: './',
+    coverage: {
+      include: ['**/*.pipe.ts', '**/*.usecase.ts'], // Inclui somente arquivos .pipe e .usecases
+
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70,
+      },
+    },
   },
   plugins: [
     tsConfigPaths(),

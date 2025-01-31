@@ -4,8 +4,8 @@ import { Body, Controller, Post } from '@nestjs/common'
 import { z } from 'zod'
 
 const createUserSchema = z.object({
-  username: z.string(),
-  email: z.string(),
+  username: z.string().min(6, { message: 'Please, provide a valid username' }),
+  email: z.string().email(),
   password: z.string(),
 })
 
