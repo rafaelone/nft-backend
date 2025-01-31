@@ -47,7 +47,11 @@ jobs:
       - name: Configure DATABASE_URL
         id: configure-databaseurl
         run: |
-          echo "DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$DATABASE_DB_NAME?schema=public" >> $GITHUB_ENV
+          echo "DATABASE_URL=postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ vars.DATABASE_DB_NAME }}?schema=public" >> $GITHUB_ENV
+
+      - name: Log var
+        id: log-var
+        run: $GITHUB_ENV
 
       - name: Run Unit Test
         id: run-unit-test
