@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
-import type { User } from '@prisma/client'
+import { Prisma, type User } from '@prisma/client'
+
 import { randomUUID } from 'node:crypto'
 
 export function makeUser(override: Partial<User> = {}) {
@@ -7,9 +8,10 @@ export function makeUser(override: Partial<User> = {}) {
     id: randomUUID(),
     username: faker.internet.username(),
     email: faker.internet.email(),
-    password: '123456',
     createdAt: new Date(),
+    password: '123456',
     updatedAt: null,
+    coin: new Prisma.Decimal(1000),
     ...override,
   }
 
