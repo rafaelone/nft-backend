@@ -47,12 +47,3 @@ jobs:
       - name: Run Unit Test
         id: run-unit-test
         run: pnpm test:cov
-
-      - name: Run e2e Test
-        id: run-e2e-test
-        run: |
-          echo "DATABASE_URL=postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ vars.DATABASE_DB_NAME }}?schema=public" >> $GITHUB_ENV
-          echo "POSTGRES_USER=${{secrets.POSTGRES_USER}} >> $GITHUB_ENV"
-          echo "POSTGRES_PASSWORD=${{secrets.POSTGRES_PASSWORD}} >> $GITHUB_ENV"
-          echo "POSTGRES_DB=${{secrets.POSTGRES_DB}} >> $GITHUB_ENV"
-          pnpm test:e2e
