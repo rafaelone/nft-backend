@@ -3,8 +3,9 @@ import { PrismaService } from '@/database/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { AppModule } from '@/app.module'
 import request from 'supertest'
+import { hash } from 'bcryptjs'
 
-describe('Create account(E2E', () => {
+describe('Create account(E2E)', () => {
   let app: INestApplication
   let prisma: PrismaService
 
@@ -43,7 +44,7 @@ describe('Create account(E2E', () => {
       data: {
         username: 'johndoe',
         email: 'johndoe@example.com',
-        password: '123456',
+        password: await hash('123456', 8),
       },
     })
 
@@ -69,7 +70,7 @@ describe('Create account(E2E', () => {
       data: {
         username: 'johndoe',
         email: 'doejohn@example.com',
-        password: '123456',
+        password: await hash('123456', 8),
       },
     })
 
